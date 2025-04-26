@@ -15,10 +15,20 @@ const success = document.querySelector("#success");
 form.addEventListener("submit", function(event){
    event.preventDefault();
 
+   error.textContent = "";
+   success.textContent = "";
    // Validate fields
 
-   const isUsernameValid = validateUsername()
+   const isUsernameValid = validateUsername();
 
+   if(!isUsernameValid){
+      username.focus(); //waxa us saara focus ka sara username
+      return
+   }
+
+
+   success.textContent = "Registration successfully!"
+    
 })
 
 function validateUsername(){
@@ -35,9 +45,11 @@ function validateUsername(){
 }
 
 function setError(element, message){
-
+   // show error class
    element.classList.add('invalid')//classList waxa waaye class oo hesto no soo qobo
+   // hide success class
    element.classList.remove('valid');
+   error.textContent = message;
 }
 
 
