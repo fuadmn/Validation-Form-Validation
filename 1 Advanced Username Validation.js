@@ -17,12 +17,17 @@ form.addEventListener("submit", function(event){
 
    error.textContent = "";
    success.textContent = "";
+
    // Validate fields
 
    const isUsernameValid = validateUsername();
+   const isEmailVaild = validateEmail();
 
    if(!isUsernameValid){
       username.focus(); //waxa us saara focus ka sara username
+      return
+   }else if(!isEmailVaild){
+      email.focus();
       return
    }
 
@@ -42,6 +47,21 @@ function validateUsername(){
       setSuccess(username);
       return true
    }
+}
+
+function validateEmail(){
+   
+   		const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+
+   if(!email.value.match(emailPattern)){
+      setError(email, "Please enter a valid email address")
+      return false;
+   }else{
+      setSuccess(email)
+      return true
+   }
+
 }
 
 function setError(element, message){
